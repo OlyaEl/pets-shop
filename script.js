@@ -1,5 +1,4 @@
-const items = [
-    {
+const items = [{
         title: "Игрушка мячик",
         description: "Ваш питомец будет счастлив!",
         tags: ["cat", "dog"],
@@ -86,35 +85,27 @@ const items = [
 ];
 
 
-const shopContent = items.slice();
-
 const shopCards = document.querySelector('#shop-items');
-
 const cardTemplate = document.querySelector('#item-template');
-const titleCard = cardTemplate.content.querySelector('h1');
-const descriptionCard = cardTemplate.content.querySelector('p');
-const tagsContainer = cardTemplate.content.querySelector('.tags');
-const priceCard = cardTemplate.content.querySelector('span');
-const imageCard = cardTemplate.content.querySelector('img');
 
 function createShopCard(cardItem) {
-  const { title, description, tags, price, img } = cardItem;
-  const card = cardTemplate.content.cloneNode(true);
+    const { title, description, tags, price, img } = cardItem;
+    const card = cardTemplate.content.cloneNode(true);
 
-  titleCard.textContent = title;
-  descriptionCard.textContent = description;
-  tagsContainer.textContent = tags;
-  priceCard.textContent = price;
-  imageCard.src = img;
+    card.querySelector('h1').textContent = title;
+    card.querySelector('p').textContent = description;
+    card.querySelector('.tags').textContent = tags;
+    card.querySelector('span').textContent = price;
+    card.querySelector('img').src = img;
 
-  return card;
+    return card;
 
 }
 
-showCards(shopContent);
+showCards();
 
 function showCards() {
-    shopContent.forEach((card) => {
+    items.forEach((card) => {
         shopCards.append(createShopCard(card))
     });
 }
